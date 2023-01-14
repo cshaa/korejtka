@@ -1,4 +1,11 @@
 {
     "deno.enable": true,
-    "deno.unstable": true
+    "deno.unstable": true,
+    "workbench.colorCustomizations": {
+        "[Default Dark+]": {
+            "editorInlayHint.background": "#FFFFFF00",
+            "editorInlayHint.foreground": "#7a7a7a"
+        },
+    },
+    "editor.inlayHints.enabled": "offUnlessPressed"
 }
