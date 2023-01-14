@@ -184,5 +184,3 @@ export async function kaktusCheckStatus(): Promise<KaktusStatus> {
     },
   };
 }
-
-console.log(await kaktusCheckStatus());
