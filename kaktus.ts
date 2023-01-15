@@ -55,7 +55,7 @@ async function kaktusFetchIsland(
   componentId: string,
   attempts = 10
 ): Promise<Element> {
-  if (attempts <= 0) throw "Could not load lazy-loaded islands in the specified number of attempts.";
+  if (attempts <= 0) throw "Could not load the lazy-loaded islands in the specified number of attempts.";
   const fetch = wrapFetch({ cookieJar });
 
   const lazyLoadingURLs =
@@ -74,7 +74,9 @@ async function kaktusFetchIsland(
   const loadingEl = islandsDom.querySelector("[data-lazy-loading]");
 
   if (loadingEl) {
-    await delay(50); // wait 50ms before asking again
+    // wait for 50ms, 60ms, 80ms, ... 5s before trying again
+    // maximum wait time before failing is just under 8s
+    await delay(5000 / attempts**2);
 
     const { requestId, componentId } = kaktusParseIslandElement(loadingEl);
     return await kaktusFetchIsland(cookieJar, requestId, componentId, attempts - 1);
